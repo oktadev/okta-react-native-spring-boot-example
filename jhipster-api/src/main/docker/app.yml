@@ -1,0 +1,30 @@
+version: '2'
+services:
+    healthpoints-app:
+        image: healthpoints
+        environment:
+            # - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://healthpoints-postgresql:5432/HealthPoints
+            - SECURITY_OAUTH2_CLIENT_ACCESS_TOKEN_URI=http://keycloak:9080/auth/realms/jhipster/protocol/openid-connect/token
+            - SECURITY_OAUTH2_CLIENT_USER_AUTHORIZATION_URI=http://keycloak:9080/auth/realms/jhipster/protocol/openid-connect/auth
+            - SECURITY_OAUTH2_CLIENT_CLIENT_ID=web_app
+            - SECURITY_OAUTH2_CLIENT_CLIENT_SECRET=web_app
+            - SECURITY_OAUTH2_CLIENT_SCOPE=openid profile email
+            - SECURITY_OAUTH2_RESOURCE_USER_INFO_URI=http://keycloak:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_JEST_URI=http://healthpoints-elasticsearch:9200
+        ports:
+            - 8080:8080
+    healthpoints-postgresql:
+        extends:
+            file: postgresql.yml
+            service: healthpoints-postgresql
+    healthpoints-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: healthpoints-elasticsearch
+    keycloak:
+        extends:
+            file: keycloak.yml
+            service: keycloak
