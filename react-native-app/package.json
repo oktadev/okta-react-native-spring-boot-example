@@ -41,7 +41,7 @@
     "react-redux": "5.0.7",
     "redux": "4.0.0",
     "redux-persist": "5.10.0",
-    "redux-saga": "0.16.0",
+    "redux-saga": "0.16.1",
     "reduxsauce": "1.0.0",
     "seamless-immutable": "7.1.4",
     "tcomb-form-native": "0.6.16"

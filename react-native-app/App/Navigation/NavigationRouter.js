@@ -11,6 +11,18 @@ import EntitiesScreen from '../Containers/EntitiesScreen'
 import SettingsScreen from '../Containers/SettingsScreen'
 import ChangePasswordScreen from '../Containers/ChangePasswordScreen'
 import ForgotPasswordScreen from '../Containers/ForgotPasswordScreen'
+import PointEntityScreen from '../Containers/PointEntityScreen'
+import PointEntityDetailScreen from '../Containers/PointEntityDetailScreen'
+import PointEntityEditScreen from '../Containers/PointEntityEditScreen'
+import BloodPressureEntityScreen from '../Containers/BloodPressureEntityScreen'
+import BloodPressureEntityDetailScreen from '../Containers/BloodPressureEntityDetailScreen'
+import BloodPressureEntityEditScreen from '../Containers/BloodPressureEntityEditScreen'
+import WeightEntityScreen from '../Containers/WeightEntityScreen'
+import WeightEntityDetailScreen from '../Containers/WeightEntityDetailScreen'
+import WeightEntityEditScreen from '../Containers/WeightEntityEditScreen'
+import PreferenceEntityScreen from '../Containers/PreferenceEntityScreen'
+import PreferenceEntityDetailScreen from '../Containers/PreferenceEntityDetailScreen'
+import PreferenceEntityEditScreen from '../Containers/PreferenceEntityEditScreen'
 // ignite-jhipster-navigation-import-needle
 
 /* **************************
@@ -35,6 +47,18 @@ class NavigationRouter extends Component {
             <Scene key='settings' component={SettingsScreen} title='Settings' back drawerLockMode='locked-closed' />
             <Scene key='changePassword' component={ChangePasswordScreen} title='Change Password' back drawerLockMode='locked-closed' />
             <Scene key='forgotPassword' component={ForgotPasswordScreen} title='Forgot Password' back drawerLockMode='locked-closed' />
+            <Scene key='pointEntity' component={PointEntityScreen} title='Points' back drawerLockMode='locked-closed' />
+            <Scene key='pointEntityDetail' component={PointEntityDetailScreen} title='Point' back drawerLockMode='locked-closed' />
+            <Scene key='pointEntityEdit' component={PointEntityEditScreen} title='Point' back drawerLockMode='locked-closed' />
+            <Scene key='bloodPressureEntity' component={BloodPressureEntityScreen} title='BloodPressures' back drawerLockMode='locked-closed' />
+            <Scene key='bloodPressureEntityDetail' component={BloodPressureEntityDetailScreen} title='BloodPressure' back drawerLockMode='locked-closed' />
+            <Scene key='bloodPressureEntityEdit' component={BloodPressureEntityEditScreen} title='BloodPressure' back drawerLockMode='locked-closed' />
+            <Scene key='weightEntity' component={WeightEntityScreen} title='Weights' back drawerLockMode='locked-closed' />
+            <Scene key='weightEntityDetail' component={WeightEntityDetailScreen} title='Weight' back drawerLockMode='locked-closed' />
+            <Scene key='weightEntityEdit' component={WeightEntityEditScreen} title='Weight' back drawerLockMode='locked-closed' />
+            <Scene key='preferenceEntity' component={PreferenceEntityScreen} title='Preferences' back drawerLockMode='locked-closed' />
+            <Scene key='preferenceEntityDetail' component={PreferenceEntityDetailScreen} title='Preference' back drawerLockMode='locked-closed' />
+            <Scene key='preferenceEntityEdit' component={PreferenceEntityEditScreen} title='Preference' back drawerLockMode='locked-closed' />
             {/* ignite-jhipster-navigation-needle */}
           </Stack>
         </Drawer>

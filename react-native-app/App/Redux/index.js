@@ -8,6 +8,10 @@ import ReduxPersist from '../Config/ReduxPersist'
 export const reducers = combineReducers({
   appState: require('./AppStateRedux').reducer,
   users: require('./UserRedux').reducer,
+  points: require('./PointRedux').reducer,
+  bloodPressures: require('./BloodPressureRedux').reducer,
+  weights: require('./WeightRedux').reducer,
+  preferences: require('./PreferenceRedux').reducer,
   // ignite-jhipster-redux-store-import-needle
   account: require('./AccountRedux').reducer,
   login: require('./LoginRedux').reducer,

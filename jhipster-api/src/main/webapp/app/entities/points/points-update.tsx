@@ -38,7 +38,6 @@ export class PointsUpdate extends React.Component<IPointsUpdateProps, IPointsUpd
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
-
     this.props.getUsers();
   }
 
@@ -104,23 +103,23 @@ export class PointsUpdate extends React.Component<IPointsUpdateProps, IPointsUpd
                     }}
                   />
                 </AvGroup>
-                <AvGroup>
-                  <Label id="exerciseLabel" for="exercise">
+                <AvGroup check>
+                  <AvInput id="points-exercise" type="checkbox" className="form-control" name="exercise" trueValue={1} falseValue={0} />
+                  <Label check id="exerciseLabel" for="exercise">
                     <Translate contentKey="healthPointsApp.points.exercise">Exercise</Translate>
                   </Label>
-                  <AvField id="points-exercise" type="string" className="form-control" name="exercise" />
                 </AvGroup>
-                <AvGroup>
-                  <Label id="mealsLabel" for="meals">
+                <AvGroup check>
+                  <AvInput id="points-meals" type="checkbox" className="form-control" name="meals" trueValue={1} falseValue={0} />
+                  <Label check id="mealsLabel" for="meals">
                     <Translate contentKey="healthPointsApp.points.meals">Meals</Translate>
                   </Label>
-                  <AvField id="points-meals" type="string" className="form-control" name="meals" />
                 </AvGroup>
-                <AvGroup>
-                  <Label id="alcoholLabel" for="alcohol">
+                <AvGroup check>
+                  <AvInput id="points-alcohol" type="checkbox" className="form-control" name="alcohol" trueValue={1} falseValue={0} />
+                  <Label check id="alcoholLabel" for="alcohol">
                     <Translate contentKey="healthPointsApp.points.alcohol">Alcohol</Translate>
                   </Label>
-                  <AvField id="points-alcohol" type="string" className="form-control" name="alcohol" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="notesLabel" for="notes">

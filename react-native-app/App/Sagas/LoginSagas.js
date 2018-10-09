@@ -36,11 +36,11 @@ export function * login (api) {
       return () => {}
     })
     const oauthResponse = yield take(chan)
+    console.tron.log('oauthResponse', oauthResponse)
     chan.close()
     Linking.removeEventListener('url')
     // parse the parameters from the redirect URI
     const { oauthState, accessToken } = parseOauthResponse(oauthResponse)
-
     if (oauthState === nonce) {
       yield call(api.setAuthToken, accessToken)
       yield put(LoginActions.loginSuccess(accessToken))
