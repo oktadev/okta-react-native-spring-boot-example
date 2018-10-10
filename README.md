@@ -55,13 +55,13 @@ export SECURITY_OAUTH2_CLIENT_CLIENT_SECRET="{yourClientSecret}"
 
 TIP: Make sure your URI variables do not have `-admin` in them. This is a common mistake.
 
-## Start Spring Boot API 
+### Start Spring Boot API 
 
 In the terminal where you want to run the Spring Boot API, run `source ~/.okta.env`, followed by `./gradlew`. You should be able to login using Okta at `http://localhost:8080`.
 
-## Start React Native App
+### Start React Native App
 
-Open a new terminal and navigate to the `react-native-app` directory. Run `yarn` to install all the dependencies (`brew install yarn` if you don't have it). Then run `react-native run-ios` or `react-native run-android` to start an emulator with the app running in it. Want more info? Read the blog post. ;)
+Open a new terminal and navigate to the `react-native-app` directory. Run `yarn` to install all the dependencies (`brew install yarn` if you don't have it). Then run `react-native run-ios` or `react-native run-android` to start an emulator with the app running in it. Want more info? Read the [blog post](https://developer.okta.com/blog/2018/10/10/react-native-spring-boot-mobile-app). ;)
 
 ## Links
 
