@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: healthpoints-elasticsearch
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: healthpoints-elasticsearch
+    spec:
+      volumes:
+      - name: data
+        emptyDir: {}
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:5.6.5
+        ports:
+        - containerPort: 9200
+          name: http
+          protocol: TCP
+        - containerPort: 9300
+          name: transport
+          protocol: TCP
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/elasticsearch/data/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthpoints-elasticsearch
+  namespace: default
+spec:
+  selector:
+    app: healthpoints-elasticsearch
+  ports:
+  - port: 9200
+    name: http
+    protocol: TCP
+  - port: 9300
+    name: transport
+    protocol: TCP

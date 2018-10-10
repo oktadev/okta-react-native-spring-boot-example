@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthpoints
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthpoints
+      version: "v1"
+  template:
+    metadata:
+      labels:
+        app: healthpoints
+        version: "v1"
+    spec:
+      initContainers:
+        - name: init-ds
+          image: busybox
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+                while true
+                do
+                  rt=$(nc -z -w 1 healthpoints-postgresql 5432)
+                  if [ $? -eq 0 ]; then
+                    echo "DB is UP"
+                    break
+                  fi
+                  echo "DB is not yet reachable;sleep for 10s before retry"
+                  sleep 10
+                done
+      containers:
+      - name: healthpoints-app
+        image: mraible/healthpoints
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://healthpoints-postgresql.default.svc.cluster.local:5432/HealthPoints
+        - name: SPRING_DATA_JEST_URI
+          value: http://healthpoints-elasticsearch.default.svc.cluster.local:9200
+        - name: JAVA_OPTS
+          value: " -Xmx256m -Xms256m"
+        - name: SECURITY_OAUTH2_CLIENT_ACCESS_TOKEN_URI
+          value: "https://dev-737523.oktapreview.com/oauth2/default/v1/token"
+        - name: SECURITY_OAUTH2_CLIENT_USER_AUTHORIZATION_URI
+          value: "https://dev-737523.oktapreview.com/oauth2/default/v1/authorize"
+        - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
+          value: "https://dev-737523.oktapreview.com/oauth2/default/v1/userinfo"
+        - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
+          value: "0oafx05pu2pxhjgkC0h7"
+        - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
+          value: "ozxBeuk7nE-oLhkUvINe1cxR3LITquTp7Jt2NvX7"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: http
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          failureThreshold: 6
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: http
+          initialDelaySeconds: 120
