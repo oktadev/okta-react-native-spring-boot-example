@@ -25,7 +25,7 @@ Please skim []() to see how this app was created.
 
 ## Getting Started
 
-To install this example application, run the following commands:
+To download this example locally, run the following commands:
 
 ```bash
 git clone https://github.com/oktadeveloper/okta-react-native-spring-boot-example.git
@@ -59,7 +59,7 @@ TIP: Make sure your URI variables do not have `-admin` in them. This is a common
 
 ## Start Spring Boot API 
 
-In the terminal where your Spring Boot app is running, kill the process, run `source ~/.okta.env` and run `./gradlew`. You should be able to login at `http://localhost:8080`.
+In the terminal where you want to run the Spring Boot API, run `source ~/.okta.env`, followed by `./gradlew`. You should be able to login using Okta at `http://localhost:8080`.
 
 ## Start React Native App
 
@@ -75,6 +75,7 @@ This example uses some excellent open source projects:
 * [React](https://reactjs.org/)
 * [JHipster](https://www.jhipster.tech/)
 * [Ignite JHipster](https://github.com/ruddell/ignite-jhipster)
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Java](https://openjdk.java.net/)
 
