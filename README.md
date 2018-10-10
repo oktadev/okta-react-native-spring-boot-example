@@ -59,7 +59,7 @@ TIP: Make sure your URI variables do not have `-admin` in them. This is a common
 
 ## Start Spring Boot API 
 
-In the terminal where your Spring Boot app is running, kill the process, run `source ~/.okta.env` and run `./gradlew` again. You should be able to login at `http://localhost:8080`.
+In the terminal where your Spring Boot app is running, kill the process, run `source ~/.okta.env` and run `./gradlew`. You should be able to login at `http://localhost:8080`.
 
 ## Start React Native App
 
