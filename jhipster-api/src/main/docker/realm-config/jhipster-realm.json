@@ -102,10 +102,7 @@
           "composite": true,
           "composites": {
             "client": {
-              "realm-management": [
-                "query-users",
-                "query-groups"
-              ]
+              "realm-management": ["query-users", "query-groups"]
             }
           },
           "clientRole": true,
@@ -238,9 +235,7 @@
           "composite": true,
           "composites": {
             "client": {
-              "realm-management": [
-                "query-clients"
-              ]
+              "realm-management": ["query-clients"]
             }
           },
           "clientRole": true,
@@ -309,9 +304,7 @@
           "composite": true,
           "composites": {
             "client": {
-              "account": [
-                "manage-account-links"
-              ]
+              "account": ["manage-account-links"]
             }
           },
           "clientRole": true,
@@ -326,9 +319,7 @@
       "name": "Admins",
       "path": "/Admins",
       "attributes": {},
-      "realmRoles": [
-        "ROLE_ADMIN"
-      ],
+      "realmRoles": ["ROLE_ADMIN"],
       "clientRoles": {},
       "subGroups": []
     },
@@ -337,36 +328,24 @@
       "name": "Users",
       "path": "/Users",
       "attributes": {},
-      "realmRoles": [
-        "ROLE_USER"
-      ],
+      "realmRoles": ["ROLE_USER"],
       "clientRoles": {},
       "subGroups": []
     }
   ],
-  "defaultRoles": [
-    "offline_access",
-    "uma_authorization"
-  ],
-  "requiredCredentials": [
-    "password"
-  ],
+  "defaultRoles": ["offline_access", "uma_authorization"],
+  "requiredCredentials": ["password"],
   "otpPolicyType": "totp",
   "otpPolicyAlgorithm": "HmacSHA1",
   "otpPolicyInitialCounter": 0,
   "otpPolicyDigits": 6,
   "otpPolicyLookAheadWindow": 1,
   "otpPolicyPeriod": 30,
-  "otpSupportedApplications": [
-    "FreeOTP",
-    "Google Authenticator"
-  ],
+  "otpSupportedApplications": ["FreeOTP", "Google Authenticator"],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
-      "roles": [
-        "offline_access"
-      ]
+      "roles": ["offline_access"]
     }
   ],
   "clients": [
@@ -379,9 +358,7 @@
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
-      "redirectUris": [
-        "/auth/admin/jhipster/console/*"
-      ],
+      "redirectUris": ["/auth/admin/jhipster/console/*"],
       "webOrigins": [],
       "notBefore": 0,
       "bearerOnly": false,
@@ -414,16 +391,8 @@
           }
         }
       ],
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     },
     {
       "id": "48fb7988-d909-445a-81db-fe825dca0db2",
@@ -449,16 +418,8 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     },
     {
       "id": "e07da50b-cddc-4524-b630-436a5a6ba8ab",
@@ -469,13 +430,8 @@
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
-      "defaultRoles": [
-        "view-profile",
-        "manage-account"
-      ],
-      "redirectUris": [
-        "/auth/realms/jhipster/account/*"
-      ],
+      "defaultRoles": ["view-profile", "manage-account"],
+      "redirectUris": ["/auth/realms/jhipster/account/*"],
       "webOrigins": [],
       "notBefore": 0,
       "bearerOnly": false,
@@ -491,16 +447,8 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     },
     {
       "id": "274afcdb-7742-4a3a-acc5-17db61a4d200",
@@ -526,16 +474,8 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     },
     {
       "id": "98ae8603-4547-4218-8fb9-ebc550a0e10b",
@@ -619,16 +559,8 @@
           }
         }
       ],
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ],
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"],
       "authorizationSettings": {
         "allowRemoteResourceManagement": false,
         "policyEnforcementMode": "ENFORCING",
@@ -639,9 +571,7 @@
             "ownerManagedAccess": false,
             "attributes": {},
             "_id": "9e347a4d-ab6b-4075-9d24-23d20dfd30bc",
-            "uris": [
-              "/*"
-            ]
+            "uris": ["/*"]
           }
         ],
         "policies": [
@@ -683,16 +613,12 @@
       "secret": "web_app",
       "redirectUris": [
         "http://localhost:8080/*",
+        "healthpoints://*",
         "http://localhost:8100/*",
         "http://127.0.0.1:8761/*",
         "http://localhost:9000/*"
       ],
-      "webOrigins": [
-        "http://localhost:8080",
-        "http://localhost:8100/*",
-        "http://127.0.0.1:8761/*",
-        "http://localhost:9000/*"
-      ],
+      "webOrigins": ["http://localhost:8080/*", "http://localhost:8100/*", "http://127.0.0.1:8761/*", "http://localhost:9000/*"],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,
@@ -721,17 +647,8 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
-      "defaultClientScopes": [
-        "jhipster",
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["jhipster", "role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     },
     {
       "id": "5a9610bf-6a47-46a1-9442-9e43eacd98e8",
@@ -757,16 +674,8 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
-      "defaultClientScopes": [
-        "role_list",
-        "profile",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access"
-      ]
+      "defaultClientScopes": ["role_list", "profile", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access"]
     }
   ],
   "clientScopes": [
@@ -1188,16 +1097,8 @@
       ]
     }
   ],
-  "defaultDefaultClientScopes": [
-    "role_list",
-    "profile",
-    "email"
-  ],
-  "defaultOptionalClientScopes": [
-    "offline_access",
-    "address",
-    "phone"
-  ],
+  "defaultDefaultClientScopes": ["role_list", "profile", "email"],
+  "defaultOptionalClientScopes": ["offline_access", "address", "phone"],
   "browserSecurityHeaders": {
     "xContentTypeOptions": "nosniff",
     "xRobotsTag": "none",
@@ -1208,9 +1109,7 @@
   },
   "smtpServer": {},
   "eventsEnabled": false,
-  "eventsListeners": [
-    "jboss-logging"
-  ],
+  "eventsListeners": ["jboss-logging"],
   "enabledEventTypes": [],
   "adminEventsEnabled": false,
   "adminEventsDetailsEnabled": false,
@@ -1223,9 +1122,7 @@
         "subType": "authenticated",
         "subComponents": {},
         "config": {
-          "allow-default-scopes": [
-            "true"
-          ]
+          "allow-default-scopes": ["true"]
         }
       },
       {
@@ -1289,9 +1186,7 @@
         "subType": "anonymous",
         "subComponents": {},
         "config": {
-          "allow-default-scopes": [
-            "true"
-          ]
+          "allow-default-scopes": ["true"]
         }
       },
       {
@@ -1301,9 +1196,7 @@
         "subType": "anonymous",
         "subComponents": {},
         "config": {
-          "max-clients": [
-            "200"
-          ]
+          "max-clients": ["200"]
         }
       },
       {
@@ -1313,12 +1206,8 @@
         "subType": "anonymous",
         "subComponents": {},
         "config": {
-          "host-sending-registration-request-must-match": [
-            "true"
-          ],
-          "client-uris-must-match": [
-            "true"
-          ]
+          "host-sending-registration-request-must-match": ["true"],
+          "client-uris-must-match": ["true"]
         }
       }
     ],
@@ -1329,9 +1218,7 @@
         "providerId": "aes-generated",
         "subComponents": {},
         "config": {
-          "priority": [
-            "100"
-          ]
+          "priority": ["100"]
         }
       },
       {
@@ -1340,9 +1227,7 @@
         "providerId": "rsa-generated",
         "subComponents": {},
         "config": {
-          "priority": [
-            "100"
-          ]
+          "priority": ["100"]
         }
       },
       {
@@ -1351,9 +1236,7 @@
         "providerId": "hmac-generated",
         "subComponents": {},
         "config": {
-          "priority": [
-            "100"
-          ]
+          "priority": ["100"]
         }
       }
     ]

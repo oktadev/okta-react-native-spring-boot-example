@@ -31,7 +31,7 @@
             "otherEntityRelationshipName": "preferences"
         }
     ],
-    "changelogDate": "20181008183500",
+    "changelogDate": "20181208005356",
     "entityTableName": "preferences",
     "dto": "no",
     "pagination": "no",

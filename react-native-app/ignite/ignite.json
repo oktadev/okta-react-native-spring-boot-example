@@ -1,13 +1,14 @@
 {
   "name": "HealthPoints",
-  "createdWith": "2.1.2",
+  "createdWith": "2.1.6",
+  "boilerplate": "ignite-jhipster",
   "examples": "classic",
   "jhipsterDirectory": "../jhipster-api",
   "authType": "oauth2",
   "searchEngine": true,
   "websockets": false,
-  "socialLogin": false,
-  "askToOverwrite": true,
+  "detox": true,
+  "askToOverwrite": false,
   "generators": {
     "entity": "ignite-jhipster",
     "import-jdl": "ignite-jhipster",

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Storage } from 'react-jhipster';
 
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 import { setLocale } from 'app/shared/reducers/locale';
@@ -70,11 +71,18 @@ export default (state: AuthenticationState = initialState, action): Authenticati
 
 export const displayAuthError = message => ({ type: ACTION_TYPES.ERROR_MESSAGE, message });
 
-export const getSession = () => dispatch =>
-  dispatch({
+export const getSession = () => async (dispatch, getState) => {
+  await dispatch({
     type: ACTION_TYPES.GET_SESSION,
     payload: axios.get('api/account')
   });
+
+  const { account } = getState().authentication;
+  if (account && account.langKey) {
+    const langKey = Storage.session.get('locale', account.langKey);
+    await dispatch(setLocale(langKey));
+  }
+};
 
 export const logout = () => async dispatch => {
   await dispatch({

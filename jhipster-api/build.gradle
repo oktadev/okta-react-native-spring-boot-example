@@ -17,9 +17,9 @@ buildscript {
 
 plugins {
     id "org.sonarqube" version "2.6.2"
-    id "net.ltgt.apt-eclipse" version "0.18"
-    id "net.ltgt.apt-idea" version "0.18"
-    id "net.ltgt.apt" version "0.18"
+    id "net.ltgt.apt-eclipse" version "0.19"
+    id "net.ltgt.apt-idea" version "0.19"
+    id "net.ltgt.apt" version "0.19"
     id "io.spring.dependency-management" version "1.0.6.RELEASE"
     id "com.moowork.node" version "1.2.0"
     id 'org.liquibase.gradle' version '2.0.1'
@@ -143,7 +143,7 @@ liquibase {
             referenceUrl 'hibernate:spring:com.okta.developer.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy'
             defaultSchemaName ''
             logLevel 'debug'
-            classpath 'src/main/resources/'
+            classpath "$buildDir/classes/java/main"
             excludeObjects 'oauth_access_token, oauth_approvals, oauth_client_details, oauth_client_token, oauth_code, oauth_refresh_token'
         }
     }
@@ -174,6 +174,9 @@ dependencies {
     compile "io.dropwizard.metrics:metrics-jvm"
     compile "io.dropwizard.metrics:metrics-servlet"
     compile "io.dropwizard.metrics:metrics-servlets"
+    compile "io.prometheus:simpleclient"
+    compile "io.prometheus:simpleclient_dropwizard"
+    compile "io.prometheus:simpleclient_servlet"
     compile "net.logstash.logback:logstash-logback-encoder"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
@@ -221,7 +224,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"
     compile "org.zalando:problem-spring-web:0.24.0-RC.0"
     compile "org.springframework.cloud:spring-cloud-security"
-    compile "org.springframework.cloud:spring-cloud-spring-service-connector"
+    compile "org.springframework.boot:spring-boot-starter-cloud-connectors"
     compile "org.springframework.security:spring-security-config"
     compile "org.springframework.security:spring-security-data"
     compile "org.springframework.security:spring-security-web"
@@ -252,8 +255,6 @@ dependencies {
     testCompile "org.hamcrest:hamcrest-library"
     testCompile "com.h2database:h2"
     liquibaseRuntime "com.h2database:h2"
-    compile "org.springframework.cloud:spring-cloud-localconfig-connector"
-    compile "org.springframework.cloud:spring-cloud-cloudfoundry-connector"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

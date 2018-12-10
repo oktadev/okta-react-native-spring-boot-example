@@ -50,7 +50,8 @@ export class Preferences extends React.Component<IPreferencesProps, IPreferences
         <h2 id="preferences-heading">
           <Translate contentKey="healthPointsApp.preferences.home.title">Preferences</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
             <Translate contentKey="healthPointsApp.preferences.home.createLabel">Create new Preferences</Translate>
           </Link>
         </h2>

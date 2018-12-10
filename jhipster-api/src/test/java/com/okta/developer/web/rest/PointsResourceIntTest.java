@@ -326,7 +326,7 @@ public class PointsResourceIntTest {
             .andExpect(jsonPath("$.[*].exercise").value(hasItem(DEFAULT_EXERCISE)))
             .andExpect(jsonPath("$.[*].meals").value(hasItem(DEFAULT_MEALS)))
             .andExpect(jsonPath("$.[*].alcohol").value(hasItem(DEFAULT_ALCOHOL)))
-            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())));
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)));
     }
 
     @Test

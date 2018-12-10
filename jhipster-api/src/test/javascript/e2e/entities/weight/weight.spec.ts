@@ -1,5 +1,5 @@
 /* tslint:disable no-unused-expression */
-import { browser, protractor } from 'protractor';
+import { browser, element, by, protractor } from 'protractor';
 
 import NavBarPage from './../../page-objects/navbar-page';
 import SignInPage from './../../page-objects/signin-page';
@@ -57,6 +57,9 @@ describe('Weight e2e test', () => {
     await weightComponentsPage.waitUntilLoaded();
     const nbButtonsBeforeDelete = await weightComponentsPage.countDeleteButtons();
     await weightComponentsPage.clickOnLastDeleteButton();
+
+    const deleteModal = element(by.className('modal'));
+    await waitUntilDisplayed(deleteModal);
 
     weightDeleteDialog = new WeightDeleteDialog();
     expect(await weightDeleteDialog.getDialogTitle().getAttribute('id')).to.match(/healthPointsApp.weight.delete.question/);

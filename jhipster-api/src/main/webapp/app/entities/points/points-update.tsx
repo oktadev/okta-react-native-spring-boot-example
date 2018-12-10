@@ -32,12 +32,19 @@ export class PointsUpdate extends React.Component<IPointsUpdateProps, IPointsUpd
     };
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
+  }
+
   componentDidMount() {
     if (this.state.isNew) {
       this.props.reset();
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
     this.props.getUsers();
   }
 
@@ -54,7 +61,6 @@ export class PointsUpdate extends React.Component<IPointsUpdateProps, IPointsUpd
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -150,14 +156,16 @@ export class PointsUpdate extends React.Component<IPointsUpdateProps, IPointsUpd
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/points" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">
                     <Translate contentKey="entity.action.back">Back</Translate>
                   </span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp;
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
                   <Translate contentKey="entity.action.save">Save</Translate>
                 </Button>
               </AvForm>
@@ -173,7 +181,8 @@ const mapStateToProps = (storeState: IRootState) => ({
   users: storeState.userManagement.users,
   pointsEntity: storeState.points.entity,
   loading: storeState.points.loading,
-  updating: storeState.points.updating
+  updating: storeState.points.updating,
+  updateSuccess: storeState.points.updateSuccess
 });
 
 const mapDispatchToProps = {

@@ -89,7 +89,8 @@ export class BloodPressure extends React.Component<IBloodPressureProps, IBloodPr
         <h2 id="blood-pressure-heading">
           <Translate contentKey="healthPointsApp.bloodPressure.home.title">Blood Pressures</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
             <Translate contentKey="healthPointsApp.bloodPressure.home.createLabel">Create new Blood Pressure</Translate>
           </Link>
         </h2>

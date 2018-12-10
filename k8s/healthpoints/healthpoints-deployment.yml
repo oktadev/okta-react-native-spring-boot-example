@@ -51,9 +51,9 @@ spec:
         - name: SECURITY_OAUTH2_RESOURCE_USER_INFO_URI
           value: "https://dev-737523.oktapreview.com/oauth2/default/v1/userinfo"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_ID
-          value: "0oafx05pu2pxhjgkC0h7"
+          value: "0oai5nqkq5sgOkglY0h7"
         - name: SECURITY_OAUTH2_CLIENT_CLIENT_SECRET
-          value: "ozxBeuk7nE-oLhkUvINe1cxR3LITquTp7Jt2NvX7"
+          value: "HnBu6eI5qse5iPQRIE022Ppf3j5HmV_DPgGODK2W"
         resources:
           requests:
             memory: "256Mi"

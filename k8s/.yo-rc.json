@@ -5,7 +5,7 @@
     ],
     "directoryPath": "../",
     "serviceDiscoveryType": false,
-    "jwtSecretKey": "Njc0MDRmZWIzYzAwOTMwODE0OWQxMTYwNjVkMWZkYTNiMmMxZTc3N2Q1ZTViM2NiOWZmOTUyMGEzNzdhOWMzOTE3YmE2ZTBmODI1ODhkNGQ2MGMyZWVhNzczODRlMWJlOGNmZA==",
+    "jwtSecretKey": "NWIzYTlhOWNiMmI2Njc0MTExZTNjZWI3YzU5ZTczYWNlZWY5ODc0ZWFlMGFmMmIwZGU4NmIyNjE1ZDAzZDg3OTJlY2JjMzFkNDFjNmI4Y2U3OGU4YzcwZjFkMTVkNTc4YmJlZA==",
     "dockerRepositoryName": "mraible",
     "dockerPushCommand": "docker push",
     "kubernetesNamespace": "default",

@@ -89,7 +89,8 @@ export class Weight extends React.Component<IWeightProps, IWeightState> {
         <h2 id="weight-heading">
           <Translate contentKey="healthPointsApp.weight.home.title">Weights</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
             <Translate contentKey="healthPointsApp.weight.home.createLabel">Create new Weight</Translate>
           </Link>
         </h2>

@@ -32,6 +32,12 @@ export class WeightUpdate extends React.Component<IWeightUpdateProps, IWeightUpd
     };
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
+  }
+
   componentDidMount() {
     if (!this.state.isNew) {
       this.props.getEntity(this.props.match.params.id);
@@ -55,7 +61,6 @@ export class WeightUpdate extends React.Component<IWeightUpdateProps, IWeightUpd
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -136,14 +141,16 @@ export class WeightUpdate extends React.Component<IWeightUpdateProps, IWeightUpd
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/weight" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">
                     <Translate contentKey="entity.action.back">Back</Translate>
                   </span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp;
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
                   <Translate contentKey="entity.action.save">Save</Translate>
                 </Button>
               </AvForm>
@@ -159,7 +166,8 @@ const mapStateToProps = (storeState: IRootState) => ({
   users: storeState.userManagement.users,
   weightEntity: storeState.weight.entity,
   loading: storeState.weight.loading,
-  updating: storeState.weight.updating
+  updating: storeState.weight.updating,
+  updateSuccess: storeState.weight.updateSuccess
 });
 
 const mapDispatchToProps = {

@@ -3,11 +3,12 @@ import { getBasePath, Storage } from 'react-jhipster';
 
 import { SERVER_API_URL } from 'app/config/constants';
 
-const TIMEOUT = 1000000; // 10000
+const TIMEOUT = 1 * 60 * 1000;
+axios.defaults.timeout = TIMEOUT;
+axios.defaults.baseURL = SERVER_API_URL;
+
 const setupAxiosInterceptors = onUnauthenticated => {
   const onRequestSuccess = config => {
-    config.timeout = TIMEOUT;
-    config.url = `${SERVER_API_URL}${config.url}`;
     return config;
   };
   const onResponseSuccess = response => response;

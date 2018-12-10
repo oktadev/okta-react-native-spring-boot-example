@@ -1,5 +1,5 @@
-import './App/Config/ReactotronConfig'
-import { AppRegistry } from 'react-native'
-import App from './App/Containers/App'
+import './app/config'
+import { registerScreensAndStartApp } from './app/navigation/layouts'
 
-AppRegistry.registerComponent('HealthPoints', () => App)
+// this registers the screens and starts the react-native-navigation process
+registerScreensAndStartApp()

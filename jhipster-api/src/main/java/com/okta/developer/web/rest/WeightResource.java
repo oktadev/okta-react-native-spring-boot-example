@@ -104,7 +104,7 @@ public class WeightResource {
         log.debug("REST request to get a page of Weights");
         Page<Weight> page = weightRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/weights");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

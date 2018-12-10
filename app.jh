@@ -14,7 +14,7 @@ application {
     nativeLanguage en,
     languages [en, es]
   }
-  entities Points, BloodPressure, Weight, Preferences 
+  entities Points, BloodPressure, Weight, Preferences
 }
 
 // JDL definition for application 'TwentyOnePoints' generated with command 'jhipster export-jdl'
@@ -42,7 +42,7 @@ entity Preferences {
 
 enum Units {
   KG,
-  LB  
+  LB
 }
 
 relationship OneToOne {

@@ -1,5 +1,5 @@
 /* tslint:disable no-unused-expression */
-import { browser } from 'protractor';
+import { browser, element, by } from 'protractor';
 
 import NavBarPage from './../../page-objects/navbar-page';
 import SignInPage from './../../page-objects/signin-page';
@@ -63,6 +63,9 @@ describe('Points e2e test', () => {
     await pointsComponentsPage.waitUntilLoaded();
     const nbButtonsBeforeDelete = await pointsComponentsPage.countDeleteButtons();
     await pointsComponentsPage.clickOnLastDeleteButton();
+
+    const deleteModal = element(by.className('modal'));
+    await waitUntilDisplayed(deleteModal);
 
     pointsDeleteDialog = new PointsDeleteDialog();
     expect(await pointsDeleteDialog.getDialogTitle().getAttribute('id')).to.match(/healthPointsApp.points.delete.question/);
