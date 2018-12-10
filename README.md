@@ -59,7 +59,7 @@ TIP: Make sure your URI variables do not have `-admin` in them. This is a common
 
 Ignite JHipster leverages [React Native AppAuth](https://github.com/FormidableLabs/react-native-app-auth), an SDK for communicating with OAuth 2.0 providers. It supports PKCE instead of a client secret, which is a more secure configuration. To use PKCE, you'll need to create a new Native application in Okta.
 
-Log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Native** and click **Next**. Give the app a name you'll remember (e.g., `React Native`), select `Refresh Token` as a grant type, in addition to the default `Authorization Code`. Change the **Login redirect URI** to be `healthpoints://authorize`) and click **Done**.
+Log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Native** and click **Next**. Give the app a name you'll remember (e.g., `React Native`), select `Refresh Token` as a grant type, in addition to the default `Authorization Code`. Change the **Login redirect URI** to be `healthpoints://authorize` and click **Done**.
 
 Modify `react-native-app/app/modules/login/login.sagas.js` to use the generated clientId.
 
