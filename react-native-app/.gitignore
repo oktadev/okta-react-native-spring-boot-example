@@ -58,3 +58,5 @@ coverage/
 # Misc
 #.env
 ios/Index/DataStore
+ios/Carthage
+ios/Pods

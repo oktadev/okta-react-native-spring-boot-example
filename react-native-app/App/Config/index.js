@@ -1,4 +1,4 @@
-import DebugConfig from './DebugConfig'
+import DebugConfig from './debug-config'
 
 if (__DEV__) {
   // If ReactNative's yellow box warnings are too much, it is possible to turn

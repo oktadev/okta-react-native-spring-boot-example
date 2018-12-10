@@ -1,4 +1,4 @@
-import { IUser } from './user.model';
+import { IUser } from 'app/shared/model/user.model';
 
 export const enum Units {
   KG = 'KG',

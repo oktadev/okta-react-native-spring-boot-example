@@ -1,5 +1,5 @@
 /* tslint:disable no-unused-expression */
-import { browser } from 'protractor';
+import { browser, element, by } from 'protractor';
 
 import NavBarPage from './../../page-objects/navbar-page';
 import SignInPage from './../../page-objects/signin-page';
@@ -56,6 +56,9 @@ describe('Preferences e2e test', () => {
     await preferencesComponentsPage.waitUntilLoaded();
     const nbButtonsBeforeDelete = await preferencesComponentsPage.countDeleteButtons();
     await preferencesComponentsPage.clickOnLastDeleteButton();
+
+    const deleteModal = element(by.className('modal'));
+    await waitUntilDisplayed(deleteModal);
 
     preferencesDeleteDialog = new PreferencesDeleteDialog();
     expect(await preferencesDeleteDialog.getDialogTitle().getAttribute('id')).to.match(/healthPointsApp.preferences.delete.question/);

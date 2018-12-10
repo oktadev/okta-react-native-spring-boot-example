@@ -6,6 +6,7 @@ import configureStore from 'redux-mock-store';
 import promiseMiddleware from 'redux-promise-middleware';
 
 import authentication, { ACTION_TYPES, getSession, clearAuthentication, logout } from 'app/shared/reducers/authentication';
+import { ACTION_TYPES as localeActionTypes } from 'app/shared/reducers/locale';
 
 describe('Authentication reducer tests', () => {
   function isAccountEmpty(state): boolean {
@@ -113,6 +114,10 @@ describe('Authentication reducer tests', () => {
         {
           type: SUCCESS(ACTION_TYPES.GET_SESSION),
           payload: resolvedObject
+        },
+        {
+          type: localeActionTypes.SET_LOCALE,
+          locale: 'en'
         }
       ];
       await store.dispatch(getSession()).then(() => expect(store.getActions()).toEqual(expectedActions));

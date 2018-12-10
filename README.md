@@ -30,14 +30,14 @@ git clone https://github.com/oktadeveloper/okta-react-native-spring-boot-example
 cd okta-react-native-spring-boot-example
 ```
 
-### Create an Application in Okta
+### Create a Web Application in Okta
 
 You will need to create an OpenID Connect Application in Okta to get your values to perform authentication. 
-Log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Web** and click **Next**. Give the app a name you'll remember, and specify `http://localhost:8080/login` and `healthpoints://authorize` as Login redirect URIs. Click **Done**, then edit it again to select "Implicit (Hybrid)" + allow ID and access tokens. Note the client ID and secret. You'll need to copy/paste them into a file in a minute.
+Log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Web** and click **Next**. Give the app a name you'll remember, specify `http://localhost:8080/login` as a Login redirect URI, and click **Done**. Note the client ID and secret. You'll need to copy/paste them into a file in a minute.
 
 Create a `ROLE_ADMIN` and `ROLE_USER` group (**Users** > **Groups** > **Add Group**) and add users to them. I recommend adding the account you signed up with to `ROLE_ADMIN` and creating a new user (**Users** > **Add Person**) to add to `ROLE_USER`.
 
-Navigate to **API** > **Authorization Servers** and click the one named **default** to edit it. Click the **Claims** tab and **Add Claim**. Name it "roles", and include it in the ID Token. Set the value type to "Groups" and set the filter to be a Regex of `.*`. Click **Create** to complete the process.
+Navigate to **API** > **Authorization Servers** and click the one named **default** to edit it. Click the **Claims** tab and **Add Claim**. Name it "groups", and include it in the ID Token. Set the value type to "Groups" and set the filter to be a Regex of `.*`. Click **Create** to complete the process.
 
 Create a file on your hard drive called `~/.okta.env` and specify the settings for your app in it.
 
@@ -54,6 +54,25 @@ export SECURITY_OAUTH2_CLIENT_CLIENT_SECRET="{yourClientSecret}"
 ```
 
 TIP: Make sure your URI variables do not have `-admin` in them. This is a common mistake.
+
+### Create a Native Application in Okta
+
+Ignite JHipster leverages [React Native AppAuth](https://github.com/FormidableLabs/react-native-app-auth), an SDK for communicating with OAuth 2.0 providers. It supports PKCE instead of a client secret, which is a more secure configuration. To use PKCE, you'll need to create a new Native application in Okta.
+
+Log in to your Okta Developer account and navigate to **Applications** > **Add Application**. Click **Native** and click **Next**. Give the app a name you'll remember (e.g., `React Native`), select `Refresh Token` as a grant type, in addition to the default `Authorization Code`. Change the **Login redirect URI** to be `healthpoints://authorize`) and click **Done**.
+
+Modify `react-native-app/app/modules/login/login.sagas.js` to use the generated clientId.
+
+[source,js]
+----
+const { issuer, scope } = authInfo.data
+const config = {
+  issuer,
+  clientId: '{yourNativeClientId}',
+  scopes: scope.split(' '),
+  redirectUrl: `${AppConfig.appUrlScheme}://authorize`
+}
+----
 
 ### Start Spring Boot API 
 

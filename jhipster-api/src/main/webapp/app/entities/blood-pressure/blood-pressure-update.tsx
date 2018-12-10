@@ -32,6 +32,12 @@ export class BloodPressureUpdate extends React.Component<IBloodPressureUpdatePro
     };
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.updateSuccess !== this.props.updateSuccess && nextProps.updateSuccess) {
+      this.handleClose();
+    }
+  }
+
   componentDidMount() {
     if (!this.state.isNew) {
       this.props.getEntity(this.props.match.params.id);
@@ -55,7 +61,6 @@ export class BloodPressureUpdate extends React.Component<IBloodPressureUpdatePro
       } else {
         this.props.updateEntity(entity);
       }
-      this.handleClose();
     }
   };
 
@@ -151,14 +156,16 @@ export class BloodPressureUpdate extends React.Component<IBloodPressureUpdatePro
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/blood-pressure" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">
                     <Translate contentKey="entity.action.back">Back</Translate>
                   </span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp;
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
                   <Translate contentKey="entity.action.save">Save</Translate>
                 </Button>
               </AvForm>
@@ -174,7 +181,8 @@ const mapStateToProps = (storeState: IRootState) => ({
   users: storeState.userManagement.users,
   bloodPressureEntity: storeState.bloodPressure.entity,
   loading: storeState.bloodPressure.loading,
-  updating: storeState.bloodPressure.updating
+  updating: storeState.bloodPressure.updating,
+  updateSuccess: storeState.bloodPressure.updateSuccess
 });
 
 const mapDispatchToProps = {

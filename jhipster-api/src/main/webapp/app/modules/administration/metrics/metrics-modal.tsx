@@ -94,23 +94,28 @@ export class MetricsModal extends React.Component<IMetricsModalProps, IMetricsMo
           <Badge color="primary" className="hand" onClick={this.updateBadgeFilter('')}>
             All&nbsp;
             <Badge pill>{counters.threadDumpAll || 0}</Badge>
-          </Badge>&nbsp;
+          </Badge>
+          &nbsp;
           <Badge color="success" className="hand" onClick={this.updateBadgeFilter('RUNNABLE')}>
             Runnable&nbsp;
             <Badge pill>{counters.threadDumpRunnable || 0}</Badge>
-          </Badge>&nbsp;
+          </Badge>
+          &nbsp;
           <Badge color="info" className="hand" onClick={this.updateBadgeFilter('WAITING')}>
             Waiting&nbsp;
             <Badge pill>{counters.threadDumpWaiting || 0}</Badge>
-          </Badge>&nbsp;
+          </Badge>
+          &nbsp;
           <Badge color="warning" className="hand" onClick={this.updateBadgeFilter('TIMED_WAITING')}>
             Timed Waiting&nbsp;
             <Badge pill>{counters.threadDumpTimedWaiting || 0}</Badge>
-          </Badge>&nbsp;
+          </Badge>
+          &nbsp;
           <Badge color="danger" className="hand" onClick={this.updateBadgeFilter('BLOCKED')}>
             Blocked&nbsp;
             <Badge pill>{counters.threadDumpBlocked || 0}</Badge>
-          </Badge>&nbsp;
+          </Badge>
+          &nbsp;
           <div className="mt-2">&nbsp;</div>
           <Input type="text" className="form-control" placeholder="Filter by Lock Name..." onChange={this.updateSearchFilter} />
           <div style={{ padding: '10px' }}>
@@ -119,8 +124,10 @@ export class MetricsModal extends React.Component<IMetricsModalProps, IMetricsMo
                   <div key={`dump-${i}`}>
                     <h6>
                       {' '}
-                      <span className={'badge ' + this.getBadgeClass(threadDumpInfo.threadState)}>{threadDumpInfo.threadState}</span>&nbsp;
-                      {threadDumpInfo.threadName} (ID {threadDumpInfo.threadId})&nbsp;
+                      <span className={'badge ' + this.getBadgeClass(threadDumpInfo.threadState)}>{threadDumpInfo.threadState}</span>
+                      &nbsp;
+                      {threadDumpInfo.threadName} (ID {threadDumpInfo.threadId}
+                      )&nbsp;
                     </h6>
                     <ThreadItem threadDumpInfo={threadDumpInfo} />
                     <Row>

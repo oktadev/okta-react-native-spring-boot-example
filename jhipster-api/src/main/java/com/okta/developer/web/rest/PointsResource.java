@@ -104,7 +104,7 @@ public class PointsResource {
         log.debug("REST request to get a page of Points");
         Page<Points> page = pointsRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/points");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

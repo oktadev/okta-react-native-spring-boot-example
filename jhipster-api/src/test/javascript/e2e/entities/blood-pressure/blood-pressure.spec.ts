@@ -1,5 +1,5 @@
 /* tslint:disable no-unused-expression */
-import { browser, protractor } from 'protractor';
+import { browser, element, by, protractor } from 'protractor';
 
 import NavBarPage from './../../page-objects/navbar-page';
 import SignInPage from './../../page-objects/signin-page';
@@ -61,6 +61,9 @@ describe('BloodPressure e2e test', () => {
     await bloodPressureComponentsPage.waitUntilLoaded();
     const nbButtonsBeforeDelete = await bloodPressureComponentsPage.countDeleteButtons();
     await bloodPressureComponentsPage.clickOnLastDeleteButton();
+
+    const deleteModal = element(by.className('modal'));
+    await waitUntilDisplayed(deleteModal);
 
     bloodPressureDeleteDialog = new BloodPressureDeleteDialog();
     expect(await bloodPressureDeleteDialog.getDialogTitle().getAttribute('id')).to.match(/healthPointsApp.bloodPressure.delete.question/);

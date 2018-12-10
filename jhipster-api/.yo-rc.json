@@ -1,6 +1,5 @@
 {
   "generator-jhipster": {
-    "clientPackageManager": "npm",
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "enableHibernateCache": true,
@@ -30,10 +29,12 @@
     "buildTool": "gradle",
     "clientFramework": "react",
     "useSass": true,
-    "jhipsterVersion": "5.4.2",
+    "jhipsterVersion": "5.7.0",
     "skipUserManagement": true,
+    "clientPackageManager": "npm",
     "cacheProvider": "ehcache",
-    "serverPort": "8080"
+    "serverPort": "8080",
+    "otherModules": []
   },
   "entities": [
     "Points",

@@ -1,7 +1,5 @@
 {
   "generator-jhipster": {
-    "applicationType": "monolith",
-    "clientPackageManager": "npm",
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "enableHibernateCache": true,
@@ -24,15 +22,17 @@
     "testFrameworks": [
       "protractor"
     ],
-    "useSass": true,
     "websocket": false,
+    "applicationType": "monolith",
     "baseName": "HealthPoints",
     "authenticationType": "oauth2",
     "buildTool": "gradle",
     "clientFramework": "react",
+    "useSass": true,
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
     "cacheProvider": "ehcache",
-    "serverPort": "8080",
-    "skipUserManagement": true
+    "serverPort": "8080"
   },
   "entities": [
     "Points",

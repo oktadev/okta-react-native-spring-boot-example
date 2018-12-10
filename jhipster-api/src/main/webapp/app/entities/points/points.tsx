@@ -84,7 +84,8 @@ export class Points extends React.Component<IPointsProps, IPointsState> {
         <h2 id="points-heading">
           <Translate contentKey="healthPointsApp.points.home.title">Points</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp;
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
             <Translate contentKey="healthPointsApp.points.home.createLabel">Create new Points</Translate>
           </Link>
         </h2>

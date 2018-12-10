@@ -9,7 +9,7 @@ import { NavDropdown } from '../header-components';
 const accountMenuItemsAuthenticated = (
   <>
     <DropdownItem tag={Link} to="/logout">
-      <FontAwesomeIcon icon="sign-out-alt" /> <Translate contentKey="global.menu.account.logout">Sign out</Translate>
+      <FontAwesomeIcon icon="sign-out-alt" fixedWidth /> <Translate contentKey="global.menu.account.logout">Sign out</Translate>
     </DropdownItem>
   </>
 );
@@ -17,7 +17,7 @@ const accountMenuItemsAuthenticated = (
 const accountMenuItems = (
   <>
     <DropdownItem id="login-item" tag="a" href={getLoginUrl()}>
-      <FontAwesomeIcon icon="sign-in-alt" /> <Translate contentKey="global.menu.account.login">Sign in</Translate>
+      <FontAwesomeIcon icon="sign-in-alt" fixedWidth /> <Translate contentKey="global.menu.account.login">Sign in</Translate>
     </DropdownItem>
   </>
 );

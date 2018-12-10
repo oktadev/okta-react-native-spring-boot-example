@@ -37,7 +37,7 @@
             "otherEntityField": "login"
         }
     ],
-    "changelogDate": "20181008204753",
+    "changelogDate": "20181210172609",
     "entityTableName": "points",
     "dto": "no",
     "pagination": "pagination",
