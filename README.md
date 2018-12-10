@@ -63,8 +63,7 @@ Log in to your Okta Developer account and navigate to **Applications** > **Add A
 
 Modify `react-native-app/app/modules/login/login.sagas.js` to use the generated clientId.
 
-[source,js]
-----
+```js
 const { issuer, scope } = authInfo.data
 const config = {
   issuer,
@@ -72,7 +71,7 @@ const config = {
   scopes: scope.split(' '),
   redirectUrl: `${AppConfig.appUrlScheme}://authorize`
 }
-----
+```
 
 ### Start Spring Boot API 
 
