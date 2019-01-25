@@ -1,0 +1,77 @@
+== Build a Mobile App with React Native and Spring Boot
+
+The brackets at the end of each step indicate the alias's or IntelliJ Live Templates to use. You can find the template definitions at https://github.com/mraible/idea-live-templates[mraible/idea-live-templates].
+
+=== Spring Boot API
+
+. Create a new directory for API: `mkdir -p react-native-spring-boot/jhipster-api`
+. Download https://github.com/jhipster/jdl-samples/blob/master/21-points.jh[21-Points Health JDL] into directory.
+. Create app with import-jdl:
+
+  jhipster import-jdl 21-points.jh
+
+. Start Docker containers:
+
+  docker-compose -f src/main/docker/elasticsearch.yml up -d
+  docker-compose -f src/main/docker/keycloak.yml up -d
+  docker-compose -f src/main/docker/postgresql.yml up -d
+  docker-compose -f src/main/docker/sonar.yml up -d
+
+. Ensure coverage with Sonar:
+
+  ./gradlew -Pprod clean test sonarqube
+
+=== React Native App
+
+. Install Ignite CLI and Ignite JHipster
+
+  npm i -g ignite-cli ignite-jhipster
+
+. Create app:
+
+  ignite new HealthPoints -b ignite-jhipster
+
+. Rename `HealthPoints` to `react-native-app`.
+
+. Restart Keycloak:
+
+  docker-compose -f jhipster-api/src/main/docker/keycloak.yml restart
+
+. To run on iOS, cd into `react-native-app/ios` and run `pod install`
+
+. In the `reactive-native-app` directory, run `react-native run-ios`
+
+. Run on Android using `react-native run-android`
+
+. For AVD to communicate with your API and Keycloak, you need to add some port mappings
+
+  adb reverse tcp:8080 tcp:8080
+  adb reverse tcp:9080 tcp:9080
+
+. Generate UI screens in React Native app
+
+  ignite generate import-jdl ../app.jh
+
+. Tweak edit screen to use toggles for exercise, meals, and alcohol [`rn-formModel, `rn-entityToForm`]
+
+. Add default form values in `componentWillMount()` [`rn-formValues`]
+
+. Tweak React App in JHipster to use checkboxes [`react-checkboxes`]
+
+=== Use Okta for Identity
+
+. Create **Web** application on Okta and set `http://localhost:8080/login` as login redirect URI
+
+. Create `~/.okta.env` and specify the settings for your app
+
+. Create a **Native** app with PKCE, use `healthpoints://authorize` for the login redirect URI
+
+. Modify `react-native-app/app/modules/login/login.sagas.js` to use the generated clientId.
+
+=== Packaging for Production
+
+. See this demo's  https://developer.okta.com/blog/2018/10/10/react-native-spring-boot-mobile-app#packaging-your-react-native-app-for-production[companion blog post] to see how to deploy this app to Cloud Foundry and Google Cloud. 
+
+. Fini!
+
+Source: https://developer.okta.com/blog/2018/10/10/react-native-spring-boot-mobile-app[Build a Mobile App with React Native and Spring Boot]
