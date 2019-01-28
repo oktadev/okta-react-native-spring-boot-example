@@ -611,7 +611,13 @@
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "web_app",
-      "redirectUris": ["http://localhost:8080/*", "http://localhost:8100/*", "http://127.0.0.1:8761/*", "http://localhost:9000/*"],
+      "redirectUris": [
+        "http://localhost:8080/*",
+        "healthpoints://*",
+        "http://localhost:8100/*",
+        "http://127.0.0.1:8761/*",
+        "http://localhost:9000/*"
+      ],
       "webOrigins": ["http://localhost:8080/*", "http://localhost:8100/*", "http://127.0.0.1:8761/*", "http://localhost:9000/*"],
       "notBefore": 0,
       "bearerOnly": false,
