@@ -1,5 +1,6 @@
 package com.okta.developer.domain;
 
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,7 +23,7 @@ import com.okta.developer.domain.enumeration.Units;
 public class Preferences implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -39,7 +40,8 @@ public class Preferences implements Serializable {
     @Column(name = "weight_units", nullable = false)
     private Units weightUnits;
 
-    @OneToOne    @JoinColumn(unique = true)
+    @OneToOne
+    @JoinColumn(unique = true)
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

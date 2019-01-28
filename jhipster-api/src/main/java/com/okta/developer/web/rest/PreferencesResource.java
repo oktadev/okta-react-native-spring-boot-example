@@ -1,6 +1,4 @@
 package com.okta.developer.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.okta.developer.domain.Preferences;
 import com.okta.developer.repository.PreferencesRepository;
 import com.okta.developer.repository.search.PreferencesSearchRepository;
@@ -51,7 +49,6 @@ public class PreferencesResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/preferences")
-    @Timed
     public ResponseEntity<Preferences> createPreferences(@Valid @RequestBody Preferences preferences) throws URISyntaxException {
         log.debug("REST request to save Preferences : {}", preferences);
         if (preferences.getId() != null) {
@@ -74,7 +71,6 @@ public class PreferencesResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/preferences")
-    @Timed
     public ResponseEntity<Preferences> updatePreferences(@Valid @RequestBody Preferences preferences) throws URISyntaxException {
         log.debug("REST request to update Preferences : {}", preferences);
         if (preferences.getId() == null) {
@@ -93,7 +89,6 @@ public class PreferencesResource {
      * @return the ResponseEntity with status 200 (OK) and the list of preferences in body
      */
     @GetMapping("/preferences")
-    @Timed
     public List<Preferences> getAllPreferences() {
         log.debug("REST request to get all Preferences");
         return preferencesRepository.findAll();
@@ -106,7 +101,6 @@ public class PreferencesResource {
      * @return the ResponseEntity with status 200 (OK) and with body the preferences, or with status 404 (Not Found)
      */
     @GetMapping("/preferences/{id}")
-    @Timed
     public ResponseEntity<Preferences> getPreferences(@PathVariable Long id) {
         log.debug("REST request to get Preferences : {}", id);
         Optional<Preferences> preferences = preferencesRepository.findById(id);
@@ -120,10 +114,8 @@ public class PreferencesResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/preferences/{id}")
-    @Timed
     public ResponseEntity<Void> deletePreferences(@PathVariable Long id) {
         log.debug("REST request to delete Preferences : {}", id);
-
         preferencesRepository.deleteById(id);
         preferencesSearchRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
@@ -137,7 +129,6 @@ public class PreferencesResource {
      * @return the result of the search
      */
     @GetMapping("/_search/preferences")
-    @Timed
     public List<Preferences> searchPreferences(@RequestParam String query) {
         log.debug("REST request to search Preferences for query {}", query);
         return StreamSupport

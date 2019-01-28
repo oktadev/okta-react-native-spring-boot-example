@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.time.Instant;
@@ -82,6 +83,9 @@ public class BloodPressureResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restBloodPressureMockMvc;
 
     private BloodPressure bloodPressure;
@@ -94,7 +98,8 @@ public class BloodPressureResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -318,7 +323,7 @@ public class BloodPressureResourceIntTest {
 
         int databaseSizeBeforeDelete = bloodPressureRepository.findAll().size();
 
-        // Get the bloodPressure
+        // Delete the bloodPressure
         restBloodPressureMockMvc.perform(delete("/api/blood-pressures/{id}", bloodPressure.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

@@ -1,7 +1,7 @@
 version: '2'
 services:
     healthpoints-elasticsearch:
-        image: elasticsearch:5.6.5
+        image: elasticsearch:5.6.13
         # volumes:
         #     - ~/volumes/jhipster/HealthPoints/elasticsearch/:/usr/share/elasticsearch/data/
         ports:

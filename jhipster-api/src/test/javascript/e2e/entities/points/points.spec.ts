@@ -21,6 +21,7 @@ describe('Points e2e test', () => {
     await browser.get('/');
     navBarPage = new NavBarPage();
     signInPage = await navBarPage.getSignInPage();
+    await signInPage.loginWithOAuth('admin', 'admin');
     await waitUntilDisplayed(navBarPage.entityMenu);
   });
 

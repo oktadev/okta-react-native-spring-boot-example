@@ -13,7 +13,7 @@ import { getUsers } from 'app/shared/reducers/user-management';
 import { getEntity, updateEntity, createEntity, reset } from './weight.reducer';
 import { IWeight } from 'app/shared/model/weight.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IWeightUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -47,7 +47,7 @@ export class WeightUpdate extends React.Component<IWeightUpdateProps, IWeightUpd
   }
 
   saveEntity = (event, errors, values) => {
-    values.timestamp = new Date(values.timestamp);
+    values.timestamp = convertDateTimeToServer(values.timestamp);
 
     if (errors.length === 0) {
       const { weightEntity } = this.props;
@@ -104,6 +104,7 @@ export class WeightUpdate extends React.Component<IWeightUpdateProps, IWeightUpd
                     type="datetime-local"
                     className="form-control"
                     name="timestamp"
+                    placeholder={'YYYY-MM-DD HH:mm'}
                     value={isNew ? null : convertDateTimeFromServer(this.props.weightEntity.timestamp)}
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }

@@ -64,11 +64,6 @@ export default (state: PointsState = initialState, action): PointsState => {
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.SEARCH_POINTS):
-      return {
-        ...state,
-        loading: false,
-        entities: action.payload.data
-      };
     case SUCCESS(ACTION_TYPES.FETCH_POINTS_LIST):
       return {
         ...state,
@@ -111,9 +106,9 @@ const apiSearchUrl = 'api/_search/points';
 
 // Actions
 
-export const getSearchEntities: ICrudSearchAction<IPoints> = query => ({
+export const getSearchEntities: ICrudSearchAction<IPoints> = (query, page, size, sort) => ({
   type: ACTION_TYPES.SEARCH_POINTS,
-  payload: axios.get<IPoints>(`${apiSearchUrl}?query=` + query)
+  payload: axios.get<IPoints>(`${apiSearchUrl}?query=${query}${sort ? `&page=${page}&size=${size}&sort=${sort}` : ''}`)
 });
 
 export const getEntities: ICrudGetAllAction<IPoints> = (page, size, sort) => {

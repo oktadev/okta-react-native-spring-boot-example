@@ -13,7 +13,7 @@ import { getUsers } from 'app/shared/reducers/user-management';
 import { getEntity, updateEntity, createEntity, reset } from './blood-pressure.reducer';
 import { IBloodPressure } from 'app/shared/model/blood-pressure.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IBloodPressureUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -47,7 +47,7 @@ export class BloodPressureUpdate extends React.Component<IBloodPressureUpdatePro
   }
 
   saveEntity = (event, errors, values) => {
-    values.timestamp = new Date(values.timestamp);
+    values.timestamp = convertDateTimeToServer(values.timestamp);
 
     if (errors.length === 0) {
       const { bloodPressureEntity } = this.props;
@@ -104,6 +104,7 @@ export class BloodPressureUpdate extends React.Component<IBloodPressureUpdatePro
                     type="datetime-local"
                     className="form-control"
                     name="timestamp"
+                    placeholder={'YYYY-MM-DD HH:mm'}
                     value={isNew ? null : convertDateTimeFromServer(this.props.bloodPressureEntity.timestamp)}
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }

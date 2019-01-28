@@ -7,7 +7,6 @@ import com.okta.developer.security.AuthoritiesConstants;
 import com.okta.developer.service.UserService;
 import com.okta.developer.service.dto.UserDTO;
 import com.okta.developer.web.rest.util.PaginationUtil;
-import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
 
 import org.slf4j.Logger;
@@ -73,7 +72,6 @@ public class UserResource {
      * @return the ResponseEntity with status 200 (OK) and with body all users
      */
     @GetMapping("/users")
-    @Timed
     public ResponseEntity<List<UserDTO>> getAllUsers(Pageable pageable) {
         final Page<UserDTO> page = userService.getAllManagedUsers(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
@@ -84,7 +82,6 @@ public class UserResource {
      * @return a string list of the all of the roles
      */
     @GetMapping("/users/authorities")
-    @Timed
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
     public List<String> getAuthorities() {
         return userService.getAuthorities();
@@ -97,7 +94,6 @@ public class UserResource {
      * @return the ResponseEntity with status 200 (OK) and with body the "login" user, or with status 404 (Not Found)
      */
     @GetMapping("/users/{login:" + Constants.LOGIN_REGEX + "}")
-    @Timed
     public ResponseEntity<UserDTO> getUser(@PathVariable String login) {
         log.debug("REST request to get User : {}", login);
         return ResponseUtil.wrapOrNotFound(
@@ -113,7 +109,6 @@ public class UserResource {
      * @return the result of the search
      */
     @GetMapping("/_search/users/{query}")
-    @Timed
     public List<User> search(@PathVariable String query) {
         return StreamSupport
             .stream(userSearchRepository.search(queryStringQuery(query)).spliterator(), false)

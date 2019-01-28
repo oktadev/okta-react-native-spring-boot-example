@@ -13,7 +13,7 @@ import { getUsers } from 'app/shared/reducers/user-management';
 import { getEntity, updateEntity, createEntity, reset } from './points.reducer';
 import { IPoints } from 'app/shared/model/points.model';
 // tslint:disable-next-line:no-unused-variable
-import { convertDateTimeFromServer } from 'app/shared/util/date-utils';
+import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IPointsUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}

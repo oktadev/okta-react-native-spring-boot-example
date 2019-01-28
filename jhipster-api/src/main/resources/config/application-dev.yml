@@ -29,6 +29,7 @@ spring:
     devtools:
         restart:
             enabled: true
+            additional-exclude: .h2.server.properties
         livereload:
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
@@ -40,6 +41,7 @@ spring:
         username: HealthPoints
         password:
         hikari:
+            poolName: Hikari
             auto-commit: false
     h2:
         console:
@@ -99,12 +101,8 @@ jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: HealthPoints@localhost
         base-url: http://127.0.0.1:8080
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:

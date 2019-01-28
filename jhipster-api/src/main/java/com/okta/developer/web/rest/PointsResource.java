@@ -1,6 +1,4 @@
 package com.okta.developer.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.okta.developer.domain.Points;
 import com.okta.developer.repository.PointsRepository;
 import com.okta.developer.repository.search.PointsSearchRepository;
@@ -56,7 +54,6 @@ public class PointsResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/points")
-    @Timed
     public ResponseEntity<Points> createPoints(@Valid @RequestBody Points points) throws URISyntaxException {
         log.debug("REST request to save Points : {}", points);
         if (points.getId() != null) {
@@ -79,7 +76,6 @@ public class PointsResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/points")
-    @Timed
     public ResponseEntity<Points> updatePoints(@Valid @RequestBody Points points) throws URISyntaxException {
         log.debug("REST request to update Points : {}", points);
         if (points.getId() == null) {
@@ -99,7 +95,6 @@ public class PointsResource {
      * @return the ResponseEntity with status 200 (OK) and the list of points in body
      */
     @GetMapping("/points")
-    @Timed
     public ResponseEntity<List<Points>> getAllPoints(Pageable pageable) {
         log.debug("REST request to get a page of Points");
         Page<Points> page = pointsRepository.findAll(pageable);
@@ -114,7 +109,6 @@ public class PointsResource {
      * @return the ResponseEntity with status 200 (OK) and with body the points, or with status 404 (Not Found)
      */
     @GetMapping("/points/{id}")
-    @Timed
     public ResponseEntity<Points> getPoints(@PathVariable Long id) {
         log.debug("REST request to get Points : {}", id);
         Optional<Points> points = pointsRepository.findById(id);
@@ -128,10 +122,8 @@ public class PointsResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/points/{id}")
-    @Timed
     public ResponseEntity<Void> deletePoints(@PathVariable Long id) {
         log.debug("REST request to delete Points : {}", id);
-
         pointsRepository.deleteById(id);
         pointsSearchRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
@@ -146,12 +138,11 @@ public class PointsResource {
      * @return the result of the search
      */
     @GetMapping("/_search/points")
-    @Timed
     public ResponseEntity<List<Points>> searchPoints(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Points for query {}", query);
         Page<Points> page = pointsSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/points");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
 }

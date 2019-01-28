@@ -127,7 +127,7 @@ The brackets at the end of each step indicate the alias's or IntelliJ Live Templ
 
 === Use Okta for Identity
 
-. Create **Web** application on Okta and set `http://localhost:8080/login` as login redirect URI
+. Create **Web** application on Okta and set `http://localhost:8080/login` as login redirect URI and `http://localhost:8080` as a logout redirect URI
 
 . Create `~/.okta.env` and specify the settings for your app; show Okta login on API
 

@@ -17,7 +17,9 @@ const initialState = {
   account: {} as any,
   errorMessage: null as string, // Errors returned from server side
   redirectMessage: null as string,
-  sessionHasBeenFetched: false
+  sessionHasBeenFetched: false,
+  idToken: null as string,
+  logoutUrl: null as string
 };
 
 export type AuthenticationState = Readonly<typeof initialState>;
@@ -39,9 +41,11 @@ export default (state: AuthenticationState = initialState, action): Authenticati
         sessionHasBeenFetched: true,
         errorMessage: action.payload
       };
-    case ACTION_TYPES.LOGOUT:
+    case SUCCESS(ACTION_TYPES.LOGOUT):
       return {
-        ...initialState
+        ...initialState,
+        idToken: action.payload.data.idToken,
+        logoutUrl: action.payload.data.logoutUrl
       };
     case SUCCESS(ACTION_TYPES.GET_SESSION): {
       const isAuthenticated = action.payload && action.payload.data && action.payload.data.activated;

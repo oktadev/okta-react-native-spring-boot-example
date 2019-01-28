@@ -6,10 +6,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": [
-      "en",
-      "es"
-    ],
+    "languages": ["en", "es"],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "com.okta.developer",
@@ -19,9 +16,7 @@
     "serviceDiscoveryType": false,
     "skipClient": false,
     "skipServer": false,
-    "testFrameworks": [
-      "protractor"
-    ],
+    "testFrameworks": ["protractor"],
     "websocket": false,
     "applicationType": "monolith",
     "baseName": "HealthPoints",
@@ -29,17 +24,14 @@
     "buildTool": "gradle",
     "clientFramework": "react",
     "useSass": true,
-    "jhipsterVersion": "5.7.0",
+    "jhipsterVersion": "5.8.0",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
     "cacheProvider": "ehcache",
     "serverPort": "8080",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
     "otherModules": []
   },
-  "entities": [
-    "Points",
-    "BloodPressure",
-    "Weight",
-    "Preferences"
-  ]
+  "entities": ["Points", "BloodPressure", "Weight", "Preferences"]
 }

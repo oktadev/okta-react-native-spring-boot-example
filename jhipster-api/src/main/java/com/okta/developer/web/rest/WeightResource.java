@@ -1,6 +1,4 @@
 package com.okta.developer.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.okta.developer.domain.Weight;
 import com.okta.developer.repository.WeightRepository;
 import com.okta.developer.repository.search.WeightSearchRepository;
@@ -56,7 +54,6 @@ public class WeightResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/weights")
-    @Timed
     public ResponseEntity<Weight> createWeight(@Valid @RequestBody Weight weight) throws URISyntaxException {
         log.debug("REST request to save Weight : {}", weight);
         if (weight.getId() != null) {
@@ -79,7 +76,6 @@ public class WeightResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/weights")
-    @Timed
     public ResponseEntity<Weight> updateWeight(@Valid @RequestBody Weight weight) throws URISyntaxException {
         log.debug("REST request to update Weight : {}", weight);
         if (weight.getId() == null) {
@@ -99,7 +95,6 @@ public class WeightResource {
      * @return the ResponseEntity with status 200 (OK) and the list of weights in body
      */
     @GetMapping("/weights")
-    @Timed
     public ResponseEntity<List<Weight>> getAllWeights(Pageable pageable) {
         log.debug("REST request to get a page of Weights");
         Page<Weight> page = weightRepository.findAll(pageable);
@@ -114,7 +109,6 @@ public class WeightResource {
      * @return the ResponseEntity with status 200 (OK) and with body the weight, or with status 404 (Not Found)
      */
     @GetMapping("/weights/{id}")
-    @Timed
     public ResponseEntity<Weight> getWeight(@PathVariable Long id) {
         log.debug("REST request to get Weight : {}", id);
         Optional<Weight> weight = weightRepository.findById(id);
@@ -128,10 +122,8 @@ public class WeightResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/weights/{id}")
-    @Timed
     public ResponseEntity<Void> deleteWeight(@PathVariable Long id) {
         log.debug("REST request to delete Weight : {}", id);
-
         weightRepository.deleteById(id);
         weightSearchRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
@@ -146,12 +138,11 @@ public class WeightResource {
      * @return the result of the search
      */
     @GetMapping("/_search/weights")
-    @Timed
     public ResponseEntity<List<Weight>> searchWeights(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Weights for query {}", query);
         Page<Weight> page = weightSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/weights");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
 }

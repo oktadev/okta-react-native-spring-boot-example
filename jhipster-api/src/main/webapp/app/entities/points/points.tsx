@@ -42,14 +42,16 @@ export class Points extends React.Component<IPointsProps, IPointsState> {
 
   search = () => {
     if (this.state.search) {
-      this.props.getSearchEntities(this.state.search);
+      this.setState({ activePage: 1 }, () => {
+        const { activePage, itemsPerPage, sort, order, search } = this.state;
+        this.props.getSearchEntities(search, activePage - 1, itemsPerPage, `${sort},${order}`);
+      });
     }
   };
 
   clear = () => {
-    this.props.getEntities();
-    this.setState({
-      search: ''
+    this.setState({ search: '', activePage: 1 }, () => {
+      this.props.getEntities();
     });
   };
 
@@ -73,8 +75,12 @@ export class Points extends React.Component<IPointsProps, IPointsState> {
   handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
 
   getEntities = () => {
-    const { activePage, itemsPerPage, sort, order } = this.state;
-    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+    const { activePage, itemsPerPage, sort, order, search } = this.state;
+    if (search) {
+      this.props.getSearchEntities(search, activePage - 1, itemsPerPage, `${sort},${order}`);
+    } else {
+      this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+    }
   };
 
   render() {
