@@ -52,6 +52,34 @@ const create = (baseURL = AppConfig.apiUrl) => {
   const createUser = (user) => api.post('api/users', user)
   const updateUser = (user) => api.put('api/users', user)
   const deleteUser = (userId) => api.delete('api/users/' + userId)
+
+  const getPoint = (pointId) => api.get('api/points/' + pointId)
+  const getPoints = (options) => api.get('api/points', options)
+  const createPoint = (point) => api.post('api/points', point)
+  const updatePoint = (point) => api.put('api/points', point)
+  const deletePoint = (pointId) => api.delete('api/points/' + pointId)
+  const searchPoints = (query) => api.get('api/_search/points', { query: query })
+
+  const getBloodPressure = (bloodPressureId) => api.get('api/blood-pressures/' + bloodPressureId)
+  const getBloodPressures = (options) => api.get('api/blood-pressures', options)
+  const createBloodPressure = (bloodPressure) => api.post('api/blood-pressures', bloodPressure)
+  const updateBloodPressure = (bloodPressure) => api.put('api/blood-pressures', bloodPressure)
+  const deleteBloodPressure = (bloodPressureId) => api.delete('api/blood-pressures/' + bloodPressureId)
+  const searchBloodPressures = (query) => api.get('api/_search/blood-pressures', { query: query })
+
+  const getWeight = (weightId) => api.get('api/weights/' + weightId)
+  const getWeights = (options) => api.get('api/weights', options)
+  const createWeight = (weight) => api.post('api/weights', weight)
+  const updateWeight = (weight) => api.put('api/weights', weight)
+  const deleteWeight = (weightId) => api.delete('api/weights/' + weightId)
+  const searchWeights = (query) => api.get('api/_search/weights', { query: query })
+
+  const getPreference = (preferenceId) => api.get('api/preferences/' + preferenceId)
+  const getPreferences = (options) => api.get('api/preferences', options)
+  const createPreference = (preference) => api.post('api/preferences', preference)
+  const updatePreference = (preference) => api.put('api/preferences', preference)
+  const deletePreference = (preferenceId) => api.delete('api/preferences/' + preferenceId)
+  const searchPreferences = (query) => api.get('api/_search/preferences', { query: query })
   // ignite-jhipster-api-method-needle
 
   // ------
@@ -73,6 +101,34 @@ const create = (baseURL = AppConfig.apiUrl) => {
     getUsers,
     getUser,
     deleteUser,
+
+    createPoint,
+    updatePoint,
+    getPoints,
+    getPoint,
+    deletePoint,
+    searchPoints,
+
+    createBloodPressure,
+    updateBloodPressure,
+    getBloodPressures,
+    getBloodPressure,
+    deleteBloodPressure,
+    searchBloodPressures,
+
+    createWeight,
+    updateWeight,
+    getWeights,
+    getWeight,
+    deleteWeight,
+    searchWeights,
+
+    createPreference,
+    updatePreference,
+    getPreferences,
+    getPreference,
+    deletePreference,
+    searchPreferences,
     // ignite-jhipster-api-export-needle
     setAuthToken,
     removeAuthToken,

@@ -12,10 +12,10 @@ export function * login (api) {
   // get the oauth issuer information from the backend
   const authInfo = yield call(api.getOauthInfo)
   if (authInfo.ok) {
-    const { issuer, clientId, scope } = authInfo.data
+    const { issuer, scope } = authInfo.data
     const config = {
       issuer,
-      clientId,
+      clientId: '{yourClientId}',
       scopes: scope.split(' '),
       redirectUrl: `${AppConfig.appUrlScheme}://authorize`
     }

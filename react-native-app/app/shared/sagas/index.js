@@ -12,6 +12,10 @@ import { RegisterTypes } from '../../modules/account/register/register.reducer'
 import { ForgotPasswordTypes } from '../../modules/account/password-reset/forgot-password.reducer'
 import { ChangePasswordTypes } from '../../modules/account/password/change-password.reducer'
 import { UserTypes } from '../../shared/reducers/user.reducer'
+import { PointTypes } from '../../modules/entities/points/points.reducer'
+import { BloodPressureTypes } from '../../modules/entities/blood-pressure/blood-pressure.reducer'
+import { WeightTypes } from '../../modules/entities/weight/weight.reducer'
+import { PreferenceTypes } from '../../modules/entities/preferences/preferences.reducer'
 // ignite-jhipster-saga-redux-import-needle
 
 /* ------------- Sagas ------------- */
@@ -23,6 +27,10 @@ import { forgotPassword } from '../../modules/account/password-reset/forgot-pass
 import { changePassword } from '../../modules/account/password/change-password.sagas'
 import { getAccount, updateAccount } from '../../shared/sagas/account.sagas'
 import { getUser, getUsers, updateUser, deleteUser } from '../../shared/sagas/user.sagas'
+import { getPoint, getPoints, updatePoint, deletePoint, searchPoints } from '../../modules/entities/points/points.sagas'
+import { getBloodPressure, getBloodPressures, updateBloodPressure, deleteBloodPressure, searchBloodPressures } from '../../modules/entities/blood-pressure/blood-pressure.sagas'
+import { getWeight, getWeights, updateWeight, deleteWeight, searchWeights } from '../../modules/entities/weight/weight.sagas'
+import { getPreference, getPreferences, updatePreference, deletePreference, searchPreferences } from '../../modules/entities/preferences/preferences.sagas'
 // ignite-jhipster-saga-method-import-needle
 
 /* ------------- API ------------- */
@@ -45,6 +53,30 @@ export default function * root () {
     takeLatest(RegisterTypes.REGISTER_REQUEST, register, api),
     takeLatest(ForgotPasswordTypes.FORGOT_PASSWORD_REQUEST, forgotPassword, api),
     takeLatest(ChangePasswordTypes.CHANGE_PASSWORD_REQUEST, changePassword, api),
+
+    takeLatest(PointTypes.POINT_REQUEST, getPoint, api),
+    takeLatest(PointTypes.POINT_ALL_REQUEST, getPoints, api),
+    takeLatest(PointTypes.POINT_UPDATE_REQUEST, updatePoint, api),
+    takeLatest(PointTypes.POINT_DELETE_REQUEST, deletePoint, api),
+    takeLatest(PointTypes.POINT_SEARCH_REQUEST, searchPoints, api),
+
+    takeLatest(BloodPressureTypes.BLOOD_PRESSURE_REQUEST, getBloodPressure, api),
+    takeLatest(BloodPressureTypes.BLOOD_PRESSURE_ALL_REQUEST, getBloodPressures, api),
+    takeLatest(BloodPressureTypes.BLOOD_PRESSURE_UPDATE_REQUEST, updateBloodPressure, api),
+    takeLatest(BloodPressureTypes.BLOOD_PRESSURE_DELETE_REQUEST, deleteBloodPressure, api),
+    takeLatest(BloodPressureTypes.BLOOD_PRESSURE_SEARCH_REQUEST, searchBloodPressures, api),
+
+    takeLatest(WeightTypes.WEIGHT_REQUEST, getWeight, api),
+    takeLatest(WeightTypes.WEIGHT_ALL_REQUEST, getWeights, api),
+    takeLatest(WeightTypes.WEIGHT_UPDATE_REQUEST, updateWeight, api),
+    takeLatest(WeightTypes.WEIGHT_DELETE_REQUEST, deleteWeight, api),
+    takeLatest(WeightTypes.WEIGHT_SEARCH_REQUEST, searchWeights, api),
+
+    takeLatest(PreferenceTypes.PREFERENCE_REQUEST, getPreference, api),
+    takeLatest(PreferenceTypes.PREFERENCE_ALL_REQUEST, getPreferences, api),
+    takeLatest(PreferenceTypes.PREFERENCE_UPDATE_REQUEST, updatePreference, api),
+    takeLatest(PreferenceTypes.PREFERENCE_DELETE_REQUEST, deletePreference, api),
+    takeLatest(PreferenceTypes.PREFERENCE_SEARCH_REQUEST, searchPreferences, api),
     // ignite-jhipster-saga-redux-connect-needle
 
     takeLatest(UserTypes.USER_REQUEST, getUser, api),

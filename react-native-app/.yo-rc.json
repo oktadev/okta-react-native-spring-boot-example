@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "com.okta.developer",
+    "packageFolder": "com/okta/developer",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "serviceDiscoveryType": false,
+    "skipClient": false,
+    "skipServer": false,
+    "testFrameworks": [
+      "protractor"
+    ],
+    "websocket": false,
+    "applicationType": "monolith",
+    "baseName": "HealthPoints",
+    "authenticationType": "oauth2",
+    "buildTool": "gradle",
+    "clientFramework": "react",
+    "useSass": true,
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "cacheProvider": "ehcache",
+    "serverPort": "8080"
+  },
+  "entities": [
+    "Points",
+    "BloodPressure",
+    "Weight",
+    "Preferences"
+  ]
+}
