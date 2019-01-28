@@ -20,6 +20,8 @@ The brackets at the end of each step indicate the alias's or IntelliJ Live Templ
 . Ensure coverage with Sonar:
 
   ./gradlew -Pprod clean test sonarqube
+  
+  View http://localhost:9001 to see the results.
 
 === React Native App
 
