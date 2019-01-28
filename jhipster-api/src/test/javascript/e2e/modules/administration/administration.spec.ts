@@ -15,6 +15,7 @@ describe('Administration', () => {
     await browser.get('/');
     navBarPage = new NavBarPage();
     signInPage = await navBarPage.getSignInPage();
+    await signInPage.loginWithOAuth('admin', 'admin');
     await waitUntilDisplayed(navBarPage.adminMenu);
   });
 

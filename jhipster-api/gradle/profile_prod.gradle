@@ -15,6 +15,10 @@ if (project.hasProperty('swagger')) {
     profiles += ',swagger'
 }
 
+springBoot {
+    buildInfo()
+}
+
 bootRun {
     args = []
 }
@@ -25,10 +29,6 @@ task webpack_test(type: NpmTask, dependsOn: 'npm_install') {
 
 task webpack(type: NpmTask, dependsOn: 'npm_install') {
     args = ["run", "webpack:prod"]
-}
-
-war {
-    webAppDirName = 'build/www/'
 }
 
 task copyIntoStatic (type: Copy) {

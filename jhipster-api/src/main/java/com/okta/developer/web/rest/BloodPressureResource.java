@@ -1,6 +1,4 @@
 package com.okta.developer.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.okta.developer.domain.BloodPressure;
 import com.okta.developer.repository.BloodPressureRepository;
 import com.okta.developer.repository.search.BloodPressureSearchRepository;
@@ -56,7 +54,6 @@ public class BloodPressureResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/blood-pressures")
-    @Timed
     public ResponseEntity<BloodPressure> createBloodPressure(@Valid @RequestBody BloodPressure bloodPressure) throws URISyntaxException {
         log.debug("REST request to save BloodPressure : {}", bloodPressure);
         if (bloodPressure.getId() != null) {
@@ -79,7 +76,6 @@ public class BloodPressureResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/blood-pressures")
-    @Timed
     public ResponseEntity<BloodPressure> updateBloodPressure(@Valid @RequestBody BloodPressure bloodPressure) throws URISyntaxException {
         log.debug("REST request to update BloodPressure : {}", bloodPressure);
         if (bloodPressure.getId() == null) {
@@ -99,7 +95,6 @@ public class BloodPressureResource {
      * @return the ResponseEntity with status 200 (OK) and the list of bloodPressures in body
      */
     @GetMapping("/blood-pressures")
-    @Timed
     public ResponseEntity<List<BloodPressure>> getAllBloodPressures(Pageable pageable) {
         log.debug("REST request to get a page of BloodPressures");
         Page<BloodPressure> page = bloodPressureRepository.findAll(pageable);
@@ -114,7 +109,6 @@ public class BloodPressureResource {
      * @return the ResponseEntity with status 200 (OK) and with body the bloodPressure, or with status 404 (Not Found)
      */
     @GetMapping("/blood-pressures/{id}")
-    @Timed
     public ResponseEntity<BloodPressure> getBloodPressure(@PathVariable Long id) {
         log.debug("REST request to get BloodPressure : {}", id);
         Optional<BloodPressure> bloodPressure = bloodPressureRepository.findById(id);
@@ -128,10 +122,8 @@ public class BloodPressureResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/blood-pressures/{id}")
-    @Timed
     public ResponseEntity<Void> deleteBloodPressure(@PathVariable Long id) {
         log.debug("REST request to delete BloodPressure : {}", id);
-
         bloodPressureRepository.deleteById(id);
         bloodPressureSearchRepository.deleteById(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
@@ -146,12 +138,11 @@ public class BloodPressureResource {
      * @return the result of the search
      */
     @GetMapping("/_search/blood-pressures")
-    @Timed
     public ResponseEntity<List<BloodPressure>> searchBloodPressures(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of BloodPressures for query {}", query);
         Page<BloodPressure> page = bloodPressureSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/blood-pressures");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
 }

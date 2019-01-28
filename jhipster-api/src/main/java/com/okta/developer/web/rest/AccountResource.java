@@ -4,7 +4,6 @@ import com.okta.developer.service.UserService;
 import com.okta.developer.service.dto.UserDTO;
 import com.okta.developer.web.rest.errors.InternalServerErrorException;
 
-import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -37,7 +36,6 @@ public class AccountResource {
      * @return the login if the user is authenticated
      */
     @GetMapping("/authenticate")
-    @Timed
     public String isAuthenticated(HttpServletRequest request) {
         log.debug("REST request to check if the current user is authenticated");
         return request.getRemoteUser();
@@ -51,7 +49,6 @@ public class AccountResource {
      * @throws InternalServerErrorException 500 (Internal Server Error) if the user couldn't be returned
      */
     @GetMapping("/account")
-    @Timed
     @SuppressWarnings("unchecked")
     public UserDTO getAccount(Principal principal) {
         if (principal != null) {

@@ -63,11 +63,6 @@ export default (state: PreferencesState = initialState, action): PreferencesStat
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.SEARCH_PREFERENCES):
-      return {
-        ...state,
-        loading: false,
-        entities: action.payload.data
-      };
     case SUCCESS(ACTION_TYPES.FETCH_PREFERENCES_LIST):
       return {
         ...state,
@@ -109,9 +104,9 @@ const apiSearchUrl = 'api/_search/preferences';
 
 // Actions
 
-export const getSearchEntities: ICrudSearchAction<IPreferences> = query => ({
+export const getSearchEntities: ICrudSearchAction<IPreferences> = (query, page, size, sort) => ({
   type: ACTION_TYPES.SEARCH_PREFERENCES,
-  payload: axios.get<IPreferences>(`${apiSearchUrl}?query=` + query)
+  payload: axios.get<IPreferences>(`${apiSearchUrl}?query=${query}`)
 });
 
 export const getEntities: ICrudGetAllAction<IPreferences> = (page, size, sort) => ({

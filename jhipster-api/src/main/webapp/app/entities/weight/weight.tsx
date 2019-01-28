@@ -39,14 +39,18 @@ export class Weight extends React.Component<IWeightProps, IWeightState> {
 
   search = () => {
     if (this.state.search) {
-      this.props.getSearchEntities(this.state.search);
+      this.props.reset();
+      this.setState({ activePage: 1 }, () => {
+        const { activePage, itemsPerPage, sort, order, search } = this.state;
+        this.props.getSearchEntities(search, activePage - 1, itemsPerPage, `${sort},${order}`);
+      });
     }
   };
 
   clear = () => {
-    this.props.getEntities();
-    this.setState({
-      search: ''
+    this.props.reset();
+    this.setState({ search: '', activePage: 1 }, () => {
+      this.props.getEntities();
     });
   };
 
@@ -78,8 +82,12 @@ export class Weight extends React.Component<IWeightProps, IWeightState> {
   };
 
   getEntities = () => {
-    const { activePage, itemsPerPage, sort, order } = this.state;
-    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+    const { activePage, itemsPerPage, sort, order, search } = this.state;
+    if (search) {
+      this.props.getSearchEntities(search, activePage - 1, itemsPerPage, `${sort},${order}`);
+    } else {
+      this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+    }
   };
 
   render() {

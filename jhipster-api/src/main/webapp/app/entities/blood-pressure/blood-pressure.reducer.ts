@@ -73,11 +73,6 @@ export default (state: BloodPressureState = initialState, action): BloodPressure
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.SEARCH_BLOODPRESSURES):
-      return {
-        ...state,
-        loading: false,
-        entities: action.payload.data
-      };
     case SUCCESS(ACTION_TYPES.FETCH_BLOODPRESSURE_LIST):
       const links = parseHeaderForLinks(action.payload.headers.link);
       return {
@@ -122,9 +117,9 @@ const apiSearchUrl = 'api/_search/blood-pressures';
 
 // Actions
 
-export const getSearchEntities: ICrudSearchAction<IBloodPressure> = query => ({
+export const getSearchEntities: ICrudSearchAction<IBloodPressure> = (query, page, size, sort) => ({
   type: ACTION_TYPES.SEARCH_BLOODPRESSURES,
-  payload: axios.get<IBloodPressure>(`${apiSearchUrl}?query=` + query)
+  payload: axios.get<IBloodPressure>(`${apiSearchUrl}?query=${query}${sort ? `&page=${page}&size=${size}&sort=${sort}` : ''}`)
 });
 
 export const getEntities: ICrudGetAllAction<IBloodPressure> = (page, size, sort) => {

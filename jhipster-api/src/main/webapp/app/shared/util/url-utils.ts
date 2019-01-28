@@ -1,7 +1,4 @@
 export const getLoginUrl = () => {
-  let port = location.port ? `:${location.port}` : '';
-  if (port === ':9000') {
-    port = ':8080';
-  }
+  const port = location.port ? `:${location.port}` : '';
   return `//${location.hostname}${port}/login`;
 };

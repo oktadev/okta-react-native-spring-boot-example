@@ -73,11 +73,6 @@ export default (state: WeightState = initialState, action): WeightState => {
         errorMessage: action.payload
       };
     case SUCCESS(ACTION_TYPES.SEARCH_WEIGHTS):
-      return {
-        ...state,
-        loading: false,
-        entities: action.payload.data
-      };
     case SUCCESS(ACTION_TYPES.FETCH_WEIGHT_LIST):
       const links = parseHeaderForLinks(action.payload.headers.link);
       return {
@@ -122,9 +117,9 @@ const apiSearchUrl = 'api/_search/weights';
 
 // Actions
 
-export const getSearchEntities: ICrudSearchAction<IWeight> = query => ({
+export const getSearchEntities: ICrudSearchAction<IWeight> = (query, page, size, sort) => ({
   type: ACTION_TYPES.SEARCH_WEIGHTS,
-  payload: axios.get<IWeight>(`${apiSearchUrl}?query=` + query)
+  payload: axios.get<IWeight>(`${apiSearchUrl}?query=${query}${sort ? `&page=${page}&size=${size}&sort=${sort}` : ''}`)
 });
 
 export const getEntities: ICrudGetAllAction<IWeight> = (page, size, sort) => {

@@ -31,6 +31,7 @@ spring:
         username: HealthPoints
         password:
         hikari:
+            poolName: Hikari
             auto-commit: false
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
@@ -41,13 +42,11 @@ spring:
             hibernate.connection.provider_disables_autocommit: true
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: false
+            hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
     data:
-        elasticsearch:
-            properties:
-                path:
-                    home: /tmp/elasticsearch
+        jest:
+            uri: http://localhost:9200
     liquibase:
         contexts: prod
     mail:
@@ -102,12 +101,8 @@ jhipster:
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: HealthPoints@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL
-    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
-        jmx:
-            enabled: true
-        prometheus:
-            enabled: false #expose metrics via prometheus
-        logs: # Reports Dropwizard metrics in the logs
+    metrics:
+        logs: # Reports metrics in the logs
             enabled: false
             report-frequency: 60 # in seconds
     logging:
