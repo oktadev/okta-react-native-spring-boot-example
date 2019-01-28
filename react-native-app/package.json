@@ -1,0 +1,154 @@
+{
+  "name": "HealthPoints",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "clean": "rimraf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force",
+    "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
+    "newclear": "rimraf $TMPDIR/react-* && watchman watch-del-all && rimraf ios/build && rimraf node_modules/ && npm cache clean --force && npm i",
+    "test:watch": "jest --watch",
+    "updateSnapshot": "jest --updateSnapshot",
+    "coverage": "jest --coverage && open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html",
+    "android:build": "cd android && ./gradlew assembleRelease",
+    "android:install": "cd android && ./gradlew assembleRelease && ./gradlew installRelease",
+    "android:hockeyapp": "cd android && ./gradlew assembleRelease && puck -submit=auto app/build/outputs/apk/app-release.apk",
+    "android:devices": "$ANDROID_HOME/platform-tools/adb devices",
+    "android:logcat": "$ANDROID_HOME/platform-tools/adb logcat *:S ReactNative:V ReactNativeJS:V",
+    "android:shake": "$ANDROID_HOME/platform-tools/adb devices | grep '\\t' | awk '{print $1}' | sed 's/\\s//g' | xargs -I {} $ANDROID_HOME/platform-tools/adb -s {} shell input keyevent 82",
+    "precommit": "npm run git-hook",
+    "prepush": "npm run git-hook",
+    "git-hook": "npm test -s",
+    "lint": "standard --verbose | snazzy",
+    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
+    "fixcode": "standard --fix",
+    "storybook": "storybook start -p 7007"
+  },
+  "dependencies": {
+    "react": "16.6.1",
+    "react-native": "0.57.5",
+    "apisauce": "0.16.0",
+    "format-json": "1.0.3",
+    "identity-obj-proxy": "3.0.0",
+    "lodash": "4.17.10",
+    "prop-types": "15.6.2",
+    "querystringify": "2.0.0",
+    "ramda": "0.25.0",
+    "react-native-vector-icons": "6.1.0",
+    "react-native-keyboard-aware-scroll-view": "0.7.2",
+    "react-redux": "5.0.7",
+    "redux": "4.0.0",
+    "redux-persist": "5.10.0",
+    "redux-saga": "0.16.0",
+    "reduxsauce": "1.0.0",
+    "react-native-navigation": "2.1.3-snapshot.33",
+    "seamless-immutable": "7.1.4",
+    "tcomb-form-native": "0.6.20"
+  },
+  "devDependencies": {
+    "babel-jest": "24.0.0",
+    "jest": "23.5.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.4.2",
+    "@storybook/addons": "3.4.10",
+    "@storybook/addon-storyshots": "3.4.10",
+    "@storybook/channels": "3.4.10",
+    "@storybook/react-native": "3.4.10",
+    "@babel/core": "7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-ignite-ignore-reactotron": "0.3.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react-native": "5.0.2",
+    "buffer": "5.2.1",
+    "enzyme": "3.5.0",
+    "enzyme-adapter-react-16": "1.3.1",
+    "ignite-jhipster": "2.0.3",
+    "react-native-app-auth": "4.0.0",
+    "detox": "9.1.2",
+    "mocha": "5.2.0",
+    "mockery": "2.1.0",
+    "react-dom": "16.4.2",
+    "reactotron-react-native": "2.1.0",
+    "reactotron-redux": "2.1.0",
+    "reactotron-redux-saga": "2.1.0",
+    "babel-eslint": "7.1.1",
+    "snazzy": "8.0.0",
+    "standard": "10.0.2",
+    "rimraf": "2.6.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/Tests/**/*.js",
+      "**/?(*.)(spec|test).js?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "test/setup.js"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy"
+    },
+    "setupFiles": [
+      "./test/setup"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|tcomb-form-native)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "app/shared/services/api.js",
+      "app/shared/themes/",
+      "/storybook/",
+      "/*\\.story\\.js"
+    ],
+    "preset": "react-native"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "describe",
+      "test",
+      "jest",
+      "expect",
+      "fetch",
+      "navigator",
+      "__DEV__",
+      "XMLHttpRequest",
+      "FormData",
+      "React$Element",
+      "element",
+      "by",
+      "beforeEach",
+      "device",
+      "it",
+      "before",
+      "after",
+      "afterEach",
+      "waitFor"
+    ],
+    "ignore": [
+      "ignite/**"
+    ]
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/HealthPoints.app",
+        "build": "xcodebuild -workspace ios/HealthPoints.xcworkspace -UseNewBuildSystem=NO -scheme HealthPoints -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      },
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/HealthPoints.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -workspace ios/HealthPoints.xcworkspace -UseNewBuildSystem=NO -scheme HealthPoints -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      }
+    },
+    "test-runner": "mocha"
+  },
+  "config": {}
+}
