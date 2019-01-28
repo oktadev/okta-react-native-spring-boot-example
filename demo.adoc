@@ -17,11 +17,9 @@ The brackets at the end of each step indicate the alias's or IntelliJ Live Templ
   docker-compose -f src/main/docker/postgresql.yml up -d
   docker-compose -f src/main/docker/sonar.yml up -d
 
-. Ensure coverage with Sonar:
+. Ensure coverage with Sonar (results at http://localhost:9001):
 
   ./gradlew -Pprod clean test sonarqube
-  
-  View http://localhost:9001 to see the results.
 
 === React Native App
 
