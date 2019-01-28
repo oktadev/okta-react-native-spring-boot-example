@@ -8,6 +8,7 @@ The brackets at the end of each step indicate the alias's or IntelliJ Live Templ
 
 === Spring Boot API
 
+. Install JHipster: `npm install -g generator-jhipster`
 . Create a new directory for API: `mkdir -p react-native-spring-boot/jhipster-api`
 . Download https://github.com/jhipster/jdl-samples/blob/master/21-points.jh[21-Points Health JDL] into the root directory.
 . Create app with import-jdl:
